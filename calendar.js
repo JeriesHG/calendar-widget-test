@@ -23,18 +23,23 @@ function CalendarController($scope) {
     for (var i = 0; i < widgets; i++) {
       var currentDate = new Date(startDate);
       currentDate = new Date(currentDate.setMonth(+currentDate.getMonth() + i));
+      if (i !== 0) {
+        currentDate.setDate(1);
+      }
 
-      var test = getDaysInMonth(currentDate, days);
-      days -= test.amountDaysGenerated;
+      var daysToGenerate = getDaysInMonth(currentDate, days);
+      days -= daysToGenerate.amountDaysGenerated;
 
       var widget = {
         monthHeader: `${$scope.monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`,
         daysHeader: $scope.daysHeader,
-        days: []
+        days: generateDays(currentDate, daysToGenerate)
       }
 
       $scope.calendar.push(widget);
     }
+
+    console.log($scope.calendar);
   };
 
   function retrieveWidgets(d1, d2) {
@@ -46,6 +51,21 @@ function CalendarController($scope) {
 
 
     return months < 0 ? 1 : (months + 2);
+  }
+
+  function generateDays(date, daysToGenerate) {
+    return Array.apply(0, Array(daysToGenerate.amountDaysGenerated))
+      .map(function(element, index) {
+        var newDate = new Date(date);
+        var newDay = index + daysToGenerate.firstDay;
+        newDate.setDate(newDay);
+
+        return {
+          date: newDate.getDate() < 10 ? `0${newDate.getDate()}` : newDate.getDate(),
+          day: newDate.getDay(),
+          weekend: (newDate.getDay() == 6) || (newDate.getDay() == 0)
+        };
+      });
   }
 
   function getDaysInMonth(date, days) {

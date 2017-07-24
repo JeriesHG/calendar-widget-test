@@ -25,7 +25,11 @@
           <label>{{widget.monthHeader}}</label>
         </div>
         <div class="calendar-days-header" ng-repeat="header in widget.daysHeader">
-        <span>{{header.label}}</label>
+        <label>{{header.label}}</label>
+        </div>
+
+        <div class="calendar-days" ng-repeat="date in widget.days" ng-class="{'calendar-weekend' : date.weekend}">
+          <label>{{date.date}}</label>
         </div>
 
 

@@ -1,5 +1,5 @@
 .calendar-widget{
-  width: 145px;
+  width: 181px;
   border: 1px solid lightgray;
   margin: 1em 0 1em 0;
 }
@@ -11,14 +11,28 @@
 
 .calendar-days-header{
   display: inline;
-  padding: 0px 0px 0px 5px;
+  padding: 0px 0px 0px 10px;
   border-right: 1px solid lightgray;
 }
 
 .calendar-days-header:last-child{
-  border-right: 0px solid lightgray;
+  border-right:0;
 }
 .calendar-days-header span{
   color: black;
 }
+.calendar-days{
+  display: inline;
+  padding: 0px 0px 0px 5px;
+  border-right: 1px solid lightgray;
+}
+.calendar-days:last-child{
+  border-right: 0;
+}
+.calendar-days label{
 
+}
+
+.calendar-weekend{
+  background-color: yellow;
+}
