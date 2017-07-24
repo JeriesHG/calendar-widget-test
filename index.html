@@ -28,7 +28,7 @@
         <label>{{header.label}}</label>
         </div>
 
-        <div class="calendar-days" ng-repeat="date in widget.days" ng-class="{'calendar-weekend' : date.weekend}">
+        <div class="calendar-days" ng-repeat="date in widget.days" ng-class="{'calendar-weekend' : date.weekend, 'calendar-weekday' : !date.weekend}">
           <label>{{date.date}}</label>
         </div>
 

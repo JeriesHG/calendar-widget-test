@@ -36,3 +36,7 @@
 .calendar-weekend{
   background-color: yellow;
 }
+
+.calendar-weekday{
+  background-color: #C9DF97;
+}
