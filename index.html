@@ -1,10 +1,10 @@
 <!doctype html>
 <html ng-app="calendarApp">
-  <head>
-    
-  </head>
-  <body>
-    <div ng-controller="calendarController">
+<head>
+  <link rel=stylesheet href="global.css">
+</head>
+<body>
+  <div ng-controller="calendarController">
 
     <div class="calendar-search-container">
       <label>Start date:</label>
@@ -19,10 +19,22 @@
 
     <div class="calendar-widget-container">
 
+      <div ng-repeat="widget in calendar" class="calendar-widget">
+
+        <div class="calendar-month-header">
+          <label>{{widget.monthHeader}}</label>
+        </div>
+        <div class="calendar-days-header" ng-repeat="header in widget.daysHeader">
+        <span>{{header.label}}</label>
+        </div>
+
+
+      </div>
+
     </div>
   </div>
 
-    <script src="angular.min.js"></script>
-    <script src="calendar.js"></script>
-  </body>
+  <script src="angular.min.js"></script>
+  <script src="calendar.js"></script>
+</body>
 </html>

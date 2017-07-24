@@ -1,0 +1,23 @@
+.calendar-widget{
+  width: 145px;
+  border: 1px solid lightgray;
+}
+
+.calendar-month-header{
+  background-color: #E5F1BF;
+  text-align: center;
+}
+
+.calendar-days-header{
+  display: inline;
+  padding: 0px 0px 0px 5px;
+  border-right: 1px solid lightgray;
+}
+
+.calendar-days-header:last-child{
+  border-right: 0px solid lightgray;
+}
+.calendar-days-header span{
+  color: black;
+}
+

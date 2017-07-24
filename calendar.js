@@ -2,7 +2,8 @@ function CalendarController($scope) {
   $scope.monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
-  
+
+
   $scope.calendar = [];
   $scope.search = {
     startDate: new Date('2017/07/23'),
@@ -20,8 +21,9 @@ function CalendarController($scope) {
     for (var i = 0; i < widgets; i++) {
       var currentMonth = new Date(startDate.setMonth(+startDate.getMonth() + i));
       var widget = {
-        header: `${$scope.monthNames[currentMonth.getMonth()]} ${currentMonth.getFullYear()}`
-
+        monthHeader: `${$scope.monthNames[currentMonth.getMonth()]} ${currentMonth.getFullYear()}`,
+        daysHeader: $scope.daysHeader,
+        days: []
       }
 
       $scope.calendar.push(widget);
@@ -46,6 +48,29 @@ function CalendarController($scope) {
     result.setDate(+result.getDate() + days);
     return result;
   }
+
+  $scope.daysHeader = [{
+    label: 'S',
+    value: 0
+  }, {
+    label: 'M',
+    value: 1
+  }, {
+    label: 'T',
+    value: 2
+  }, {
+    label: 'W',
+    value: 3
+  }, {
+    label: 'T',
+    value: 4
+  }, {
+    label: 'F',
+    value: 5
+  }, {
+    label: 'S',
+    value: 6
+  }];
 }
 
 CalendarController.$inject = ['$scope'];
