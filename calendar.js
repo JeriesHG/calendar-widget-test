@@ -6,7 +6,7 @@ function CalendarController($scope) {
   $scope.search = {
     startDate: new Date('2017/07/23'),
     days: 2,
-    countrycode: 'US'
+    countryCode: 'US'
   };
 
   $scope.buildCalendar = function() {
