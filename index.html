@@ -5,9 +5,22 @@
   </head>
   <body>
     <div ng-controller="calendarController">
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+
+    <div class="calendar-search-container">
+      <label>Start date:</label>
+      <input type="text" ng-model="search.startDate" placeholder="Enter start date..."  ng-change="buildCalendar()">
+
+      <label>Number of days:</label>
+      <input type="number" ng-model="search.days" placeholder="Enter number of days" ng-change="buildCalendar()">
+
+      <label>Country Code:</label>
+      <input type="text" ng-model="search.countryCode" placeholder="Enter country code..."  ng-change="buildCalendar()">
     </div>
+
+    <div class="calendar-widget-container">
+
+    </div>
+  </div>
 
     <script src="angular.min.js"></script>
     <script src="calendar.js"></script>
