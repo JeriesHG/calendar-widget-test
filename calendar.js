@@ -13,14 +13,19 @@ function CalendarController($scope) {
     $scope.calendar = [];
 
     var startDate = new Date($scope.search.startDate);
+    var days = $scope.search.days;
+
     var widgets = retrieveWidgets(
       startDate,
-      addDays(new Date($scope.search.startDate), $scope.search.days)
+      addDays(new Date($scope.search.startDate), days)
     );
-    
+
     for (var i = 0; i < widgets; i++) {
       var currentDate = new Date(startDate);
       currentDate = new Date(currentDate.setMonth(+currentDate.getMonth() + i));
+
+      var test = getDaysInMonth(currentDate, days);
+      days -= test.amountDaysGenerated;
 
       var widget = {
         monthHeader: `${$scope.monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`,
@@ -30,8 +35,6 @@ function CalendarController($scope) {
 
       $scope.calendar.push(widget);
     }
-
-    console.log($scope.calendar);
   };
 
   function retrieveWidgets(d1, d2) {
@@ -43,6 +46,33 @@ function CalendarController($scope) {
 
 
     return months < 0 ? 1 : (months + 2);
+  }
+
+  function getDaysInMonth(date, days) {
+    if (days < 1) {
+      return;
+    }
+
+    var lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+    var remainingDays = lastDate.getDate() - date.getDate();
+    var amountDaysGenerated = 0;
+
+    while (remainingDays > 0) {
+      remainingDays--;
+      amountDaysGenerated++;
+
+      if (amountDaysGenerated === days) {
+        break;
+      }
+    }
+
+    days -= amountDaysGenerated;
+
+    return {
+      firstDay: date.getDate(),
+      amountDaysGenerated: amountDaysGenerated
+    }
   }
 
   function addDays(date, days) {
