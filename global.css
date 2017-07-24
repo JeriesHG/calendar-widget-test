@@ -1,6 +1,7 @@
 .calendar-widget{
   width: 145px;
   border: 1px solid lightgray;
+  margin: 1em 0 1em 0;
 }
 
 .calendar-month-header{

@@ -3,8 +3,6 @@ function CalendarController($scope) {
     "July", "August", "September", "October", "November", "December"
   ];
 
-
-  $scope.calendar = [];
   $scope.search = {
     startDate: new Date('2017/07/23'),
     days: 2,
@@ -12,16 +10,20 @@ function CalendarController($scope) {
   };
 
   $scope.buildCalendar = function() {
+    $scope.calendar = [];
+
     var startDate = new Date($scope.search.startDate);
     var widgets = retrieveWidgets(
       startDate,
       addDays(new Date($scope.search.startDate), $scope.search.days)
     );
-
+    
     for (var i = 0; i < widgets; i++) {
-      var currentMonth = new Date(startDate.setMonth(+startDate.getMonth() + i));
+      var currentDate = new Date(startDate);
+      currentDate = new Date(currentDate.setMonth(+currentDate.getMonth() + i));
+
       var widget = {
-        monthHeader: `${$scope.monthNames[currentMonth.getMonth()]} ${currentMonth.getFullYear()}`,
+        monthHeader: `${$scope.monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`,
         daysHeader: $scope.daysHeader,
         days: []
       }
